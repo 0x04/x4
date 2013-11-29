@@ -31,15 +31,19 @@ Sub themes:
  * Version notice: JS String 'v1.8.5',
                    CSS Selector '.version-1_8_5'
 
+Demo:
+-----
+http://codepen.io/0x04/full/GruoD
+
 Todos:
--------
+------
 * cleanup
 * simplify
 * more components
 * …
 
 Credits:
----------
+--------
 * [Tim Pietrusky](http://timpietrusky.com) creator of
   [We Love Icon Fonts](http://weloveiconfonts.com)
 * [Dave Gandy](https://twitter.com/davegandy) creator of
