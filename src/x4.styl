@@ -1,9 +1,11 @@
 /**
- * x4.css
+ * x4 Theme System
+ * ===============
  * @creator Oliver Kühn
  * @website http://0x04.de
  * @created 2013-11-26
  * @license MIT
+ * @credits See `readme.md`.
  */
 
 
@@ -15,8 +17,8 @@
 
 @import 'nib'
 @import 'nib/gradients'
-@import url(http://fonts.googleapis.com/css?family=Monda)
-// Thx Tim! (timpietrusky.com)
+// @TODO: For release only the required fonts, please.
+@import url(http://fonts.googleapis.com/css?family=Ubuntu\|Monda);
 @import url(http://weloveiconfonts.com/api/?family=fontawesome)
 
 
@@ -31,123 +33,144 @@
 //------------------------------------------------------------------------------
 
 /**
+ * Theme font
+ * @type {font-style}
+ */
+$x4_FontMonda = 1rem\/150% 'Monda', sans-serif
+$x4_FontUbuntu = 1rem\/150% 'OpenSans', sans-serif
+
+/**
  * Padding
  * @type {length}
  */
-x4_PaddingX = 1rem
-x4_PaddingY = 0.25rem
-x4_Padding = x4_PaddingX x4_PaddingY
-x4_PaddingPanelX = 1rem
-x4_PaddingPanelY = 0.5rem
-x4_PaddingPanel = x4_PaddingPanelY x4_PaddingPanelX
-x4_PaddingContainer = 0.75rem 1rem
-x4_PaddingHeader = 0.25rem 1rem
+$x4_PaddingX = 1rem
+$x4_PaddingY = 0.5rem
+$x4_Padding = $x4_PaddingY $x4_PaddingX
+$x4_PaddingHeader = ($x4_PaddingY / 2) $x4_PaddingX
 
 /**
  * Margins
  * @type {length}
  */
-x4_MarginBody = 4.4rem 0 1em 0
-x4_MarginHeadline = 0.5rem 0rem
+$x4_MarginBody = 4.75rem 0 1rem 0
+$x4_MarginHeadline = 0.5rem 0rem
 
 /**
  * Lighteners and darkeners
  * @type {percentage}
  */
-x4_Lighter =   5%
-x4_Light   =  15%
-x4_Medium  =  35%
-x4_Dark    =  75%
-x4_Darker  = 100%
+$x4_Lighter =   5%
+$x4_Light   =  15%
+$x4_Medium  =  35%
+$x4_Dark    =  75%
+$x4_Darker  = 100%
 
 /**
  * Colors
  * @type {color}
  */
-x4_Color = #EE6633
-
+$x4_Color = #FF6633
 
 /**
- * Other numeric
+ * Borders
  * @type {length|percentage}
  */
-x4_BorderRadius = 8px
-x4_BorderInnerRadius = 10px
-x4_ShadowDistance = 3px
+$x4_BorderRadius = 8px
+$x4_BorderInnerRadius = 10px
 
 /**
  * Tints
  * @type {color}
  */
-x4_TintDarker  = lighten(x4_Color, x4_Lighter)
-x4_TintDark    = lighten(x4_Color, x4_Light)
-x4_TintMedium  = lighten(x4_Color, x4_Medium)
-x4_TintLight   = lighten(x4_Color, x4_Dark)
-x4_TintLighter = lighten(x4_Color, x4_Darker)
+$x4_TintDarker  = lighten($x4_Color, $x4_Lighter)
+$x4_TintDark    = lighten($x4_Color, $x4_Light)
+$x4_TintMedium  = lighten($x4_Color, $x4_Medium)
+$x4_TintLight   = lighten($x4_Color, $x4_Dark)
+$x4_TintLighter = lighten($x4_Color, $x4_Darker)
 
 /**
  * Shades
  * @type {color}
  */
-x4_ShadeLighter = darken(x4_Color, x4_Lighter)
-x4_ShadeLight   = darken(x4_Color, x4_Light)
-x4_ShadeMedium  = darken(x4_Color, x4_Medium)
-x4_ShadeDark    = darken(x4_Color, x4_Dark)
-x4_ShadeDarker  = darken(x4_Color, x4_Darker)
+$x4_ShadeLighter = darken($x4_Color, $x4_Lighter)
+$x4_ShadeLight   = darken($x4_Color, $x4_Light)
+$x4_ShadeMedium  = darken($x4_Color, $x4_Medium)
+$x4_ShadeDark    = darken($x4_Color, $x4_Dark)
+$x4_ShadeDarker  = darken($x4_Color, $x4_Darker)
 
 /**
- * Theme font
- * @type {font-style}
+ * Shadows
+ * @type *
  */
-x4_Font = 1.2em/1.2em Monda
+$x4_ShadowDistanceX = 4px
+$x4_ShadowDistanceY = 4px
+$x4_ShadowBlur = 0
+$x4_ShadowColor = $x4_ShadeDark
+$x4_ShadowAlpha = 0.5
+$x4_Shadow = x4_JoinSpace(
+    $x4_ShadowDistanceY,
+    $x4_ShadowDistanceX,
+    $x4_ShadowBlur,
+    x4_ColorAlpha($x4_ShadowColor, $x4_ShadowAlpha)
+);
 
-// Font Awesome {Dave Gandy|http://fortawesome.github.com/Font-Awesome}
-[class*="fontawesome-"]:before
-  font-family 'FontAwesome', sans-serif
+/**
+ * Angles for the `x4_GradientStripes` function
+ * @type {angle}
+ */
+$x4_GradientDegree180 = 180deg
+$x4_GradientDegree90  = 90deg
+$x4_GradientDegree45  = 45deg
+$x4_GradientDegree26  = 26.56deg
 
-  
+
 //------------------------------------------------------------------------------
 //
 // @section Mixins
 //
 //------------------------------------------------------------------------------
 
-/**
- * Angles for the `x4_ThemeCreateStripes` function
- * @type {angle}
- */
-x4_ThemeStripe180 = 180deg
-x4_ThemeStripe90 = 90deg
-x4_ThemeStripe45 = 45deg
-x4_ThemeStripe26 = 26.56deg
+//------------------------------------------------------------------------------
+// @part Helpers
+//------------------------------------------------------------------------------
+
+x4_JoinSpace()
+  arguments
+
+x4_JoinComma()
+  unquote(join(',', arguments))
+
+
+//------------------------------------------------------------------------------
+// @part Colors
+//------------------------------------------------------------------------------
 
 /**
  * Creates background stripes with gradients.
- * @param {angle} [deg=x4_ThemeStripe45]
- * @param {color} [colorA=#FFF]
- * @param {color} [colorB=#000]
+ * @param {angle} [deg=$x4_GradientDegree45]
+ * @param {color} [colorA=#000]
+ * @param {color} [colorB=#transparent]
  * @param {length|percentage} [width=64px]
  * @param {length|percentage} [height=width]
  * @param {position} [position top left]
  */
-x4_ThemeCreateStripes(
-    deg = x4_ThemeStripe45,
-    colorA = #FFF,
-    colorB = #000,
+x4_GradientStripes(
+    deg = $x4_GradientDegree45,
+    colorA = #000,
+    colorB = transparent,
     width = 64px,
     height = width,
     position = top left
   )
-  if deg == x4_ThemeStripe180 || deg == x4_ThemeStripe90
-    background: linear-gradient(
+  if deg == $x4_GradientDegree180 || deg == $x4_GradientDegree90
+    background linear-gradient(
         deg,
         colorA 50%,
         colorB 50%
     )
-  if deg == x4_ThemeStripe45 || deg == x4_ThemeStripe26
-    background: linear-gradient(
+  if deg == $x4_GradientDegree45 || deg == $x4_GradientDegree26
+    background linear-gradient(
         deg,
-        colorA,
         colorA 25%,
         colorB 25%,
         colorB 50%,
@@ -159,22 +182,44 @@ x4_ThemeCreateStripes(
   background-position position
 
 /**
- * Creates a x4 grid system.
- * @param {number} numColumns
+ * Creates background stripes with gradients.
+ * @param {angle} [deg=$x4_GradientDegree45]
+ * @param {color} [colorA=#000]
+ * @param {color} [colorB=#transparent]
+ * @param {length|percentage} [width=64px]
+ * @param {length|percentage} [height=width]
+ * @param {position} [position top left]
  */
-x4_GridCreate(numColumns)
-  for column in (1 .. numColumns)
-    .col-{column}
-      width (100 / numColumns * column)%
-
-x4_GridCreate(12);
+x4_GradientCheckerBoard(
+    colorA = #000,
+    colorB = transparent,
+    width = 128px,
+    height = width,
+    position = top left
+  )
+  background x4_JoinComma(
+      linear-gradient(45deg, colorA 25%, colorB 25%, colorB),
+      linear-gradient(-45deg, colorA 25%, colorB 25%, colorB),
+      linear-gradient(45deg, colorB 75%, colorA 75%),
+      linear-gradient(-45deg, colorB 75%, colorA 75%)
+  )
+  background-size width height
+  background-position position
 
 /**
- * Creates tints and shades from colors.
- * @param {string} prefix
- * @param {color[]} values
+ * Creates a color with alpha value
+ * @param {color} color
+ * @param {length} alpha
  */
-x4_ColorTintsAndShadesCreate(prefix, values)
+x4_ColorAlpha(color, alpha)
+  rgba(red(color), green(color), blue(color), alpha)
+
+/**
+ * Creates color classes.
+ * @param {string} prefix
+ * @param {*[]} values
+ */
+x4_ColorCreate(prefix, values)
   grades = base lighter light medium dark darker
   for value, index in values
     {prefix}-bg-{grades[index]}
@@ -183,26 +228,64 @@ x4_ColorTintsAndShadesCreate(prefix, values)
       color value !important
 
 
-x4_ColorTintsAndShadesCreate('.tint', x4_Color x4_TintLighter x4_TintLight x4_TintMedium x4_TintDark x4_TintDarker)
-x4_ColorTintsAndShadesCreate('.shade', x4_Color x4_ShadeLighter x4_ShadeLight x4_ShadeMedium x4_ShadeDark x4_ShadeDarker)
+//------------------------------------------------------------------------------
+// @part Layout
+//------------------------------------------------------------------------------
+
+/**
+ * Creates a x4 grid system.
+ * @param {number} numColumns
+ */
+x4_GridCreate(numColumns)
+  for column in (1 .. numColumns)
+    .col-{column}
+      width (100 / numColumns * column)%
 
 
 //------------------------------------------------------------------------------
 //
-// @section Declartions
+// @section Declarations
 //
 //------------------------------------------------------------------------------
 
-label, a
-{
-  cursor pointer
-}
+reset-html5()
+
+// Tints
+x4_ColorCreate(
+    '.tint',
+    x4_JoinSpace(
+        $x4_Color,
+        $x4_TintLighter,
+        $x4_TintLight,
+        $x4_TintMedium,
+        $x4_TintDark,
+        $x4_TintDarker
+    )
+)
+
+// Shades
+x4_ColorCreate(
+    '.shade',
+    x4_JoinSpace(
+        $x4_Color,
+        $x4_ShadeLighter,
+        $x4_ShadeLight,
+        $x4_ShadeMedium,
+        $x4_ShadeDark,
+        $x4_ShadeDarker
+    )
+)
+
+//x4_GridCreate(12);
 
 
 //------------------------------------------------------------------------------
-// @part Document / default styles
+// @part Media
 //------------------------------------------------------------------------------
 
+/**
+ * Desktop/Tablets
+ */
 @media (min-width: 960px)
   //
   html
@@ -210,72 +293,134 @@ label, a
       //display none
       .container
         width 960px
-        
 
-html
-  
-  //----------------------------------------------------------------------------
-  // @part Body
-  //----------------------------------------------------------------------------
-  
-  body
-    
-    font x4_Font
-    margin x4_MarginBody
+
+//------------------------------------------------------------------------------
+// @part Document
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
+// @part Defaults
+//------------------------------------------------------------------------------
+
+body
+  font $x4_FontUbuntu
+  margin $x4_MarginBody
+  padding 0
+
+label, a
+  cursor pointer
+
+
+//------------------------------------------------------------------------------
+// @part Specials
+//------------------------------------------------------------------------------
+
+/**
+ * Font Awesome (@credits see top)
+ */
+*[class*="fontawesome-"]:before
+  font-family 'FontAwesome', sans-serif
+
+
+//------------------------------------------------------------------------------
+// @part Headlines
+//------------------------------------------------------------------------------
+
+/**
+ * h1 - h6
+ * -------
+ * Headlines.
+ */
+h1, h2, h3, h4, h5, h6
+  font $x4_FontMonda
+  font-weight bolder
+  & ~ p
+    margin-top 0
+
+  /**
+   * "Font Awesome" headline icon handling
+   * -------------------------------------
+   * It's about to get the icon centered in a backgrounded, :before pseudo
+   * element. It should stays left from the headlines text.
+   *
+   * The solution is to build a pseudo table with corresponding display
+   * values. A bit tricky, but does the job.
+   */
+  &[class*="fontawesome-"]
+    width 100%
+    // The trick
+    display table
+    border-collapse collapse
+    border-spacing 1rem
+  &[class*="fontawesome-"]:before
+    width 1rem
+    text-align center
+    display table-cell
+    // Creates the gap between the icon and the text of the headline.
+    border-right 1rem solid transparent
+    // But now we have to move the text back into place.
+    text-indent 0.5rem
+p
+  margin $x4_PaddingY 0 ($x4_PaddingY * 1.5) 0
+
+for i in (1 .. 6)
+  h{i}
+    font-size (1.75 * (6 - i) / 5 + 0.5)rem
+    margin $x4_MarginHeadline
+    small
+      font-weight normal
+      color $x4_ShadeLight
+      // Create a space to seperate it from the normal headline text.
+      &:before
+        content ' '
+
+
+//------------------------------------------------------------------------------
+// @part Header
+//------------------------------------------------------------------------------
+
+/**
+ * Header
+ * ------
+ * The site header.
+ */
+header
+  left 0
+  top 0
+  right 0
+  position fixed
+  padding $x4_PaddingHeader
+  color $x4_TintLighter
+  background-color $x4_ShadeDark
+  box-shadow $x4_Shadow
+  .header-title
+    margin 0
+  .container
     padding 0
-    
-    //--------------------------------------------------------------------------
-    // @part Headlines
-    //--------------------------------------------------------------------------
-    
-    // h1 - h6
-    for i in (1 .. 6)
-      h{i}
-        font-size (1.75 * (6 - i) / 5 + 0.5)rem
-        margin x4_MarginHeadline
-        small
-          font-weight normal
-          color x4_ShadeLight
-    
-    
-    //--------------------------------------------------------------------------
-    // @part Header
-    //--------------------------------------------------------------------------
-    
-    header
-      left 0
-      top 0
-      right 0
-      position fixed
-      padding x4_PaddingHeader
-      border-left: 4rem solid x4_ShadeDark
-      border-bottom: x4_ShadowDistance solid x4_ShadeDark
-      color x4_TintLight
-      background-color x4_ShadeMedium
-      .header-title
-        margin 0
-      .container
-        margin 0
-        padding 0
-      .header-title:after
-        content 'Uncategorized'
-        font-size 2.25rem
-        font-weight bolder
+  .header-title:after
+    content 'Uncategorized'
+    font-size 2.25rem
+    font-weight bolder
 
-    hr
-      clearfix()
-      height 0
-      border 0
-      margin 0.5em
-      margin-left -(x4_PaddingPanelX)
-      margin-right -(x4_PaddingPanelX)
-      box-sizing content-box
-      border-bottom 2px solid x4_TintDark
-      background-color x4_TintLight
-      &.fat
-        border-bottom x4_ShadowDistance solid x4_TintDark
-      &.dotted
-        border-style dotted
+/**
+ * Horizontal ruler
+ * ----------------
+ * Base rules for `<hr>`s.
+ */
+hr
+  height 0
+  border 0
+  margin 1rem
+  border-bottom 2px solid $x4_ShadeLighter
+  background-color $x4_TintLight
+  clearfix()
+  &.fat
+    border-bottom $x4_ShadowDistanceY solid $x4_ShadeLighter
+  &.dotted
+    border-style dotted
+
+
 
 //------------------------------------------------------------------------------
 //
@@ -283,29 +428,65 @@ html
 //
 //------------------------------------------------------------------------------
 
+//------------------------------------------------------------------------------
+// @part Horinzontal space
+//------------------------------------------------------------------------------
+
+.h-space,
+.h-space-x1,
+.h-space-x2,
+.h-space-x3
+  padding x4_PaddingY 0 0 0
+
+
+//------------------------------------------------------------------------------
+// @part ColorSwatch
+//------------------------------------------------------------------------------
+
+/**
+ * ColorSwatch
+ * -----------
+ * A really simple element representing a color value.
+ */
 .color-swatch
   float left
-  width 4rem
-  height 4rem
-  //border 2px solid x4_ShadeMedium
-  border-radius x4_BorderRadius
-  box-shadow x4_ShadowDistance x4_ShadowDistance 0 x4_TintDark
-  font-size 3rem
+  width 3rem
+  height 3rem
+  border-radius 2rem
+  box-shadow x4_JoinSpace(
+      ($x4_ShadowDistanceX / 2),
+      ($x4_ShadowDistanceY / 2),
+      $x4_ShadowBlur,
+      x4_ColorAlpha(
+          $x4_ShadowColor,
+          $x4_ShadowAlpha
+      )
+  )
+  font-size 2rem
   text-align center
-  line-height 4rem
+  line-height (@height)
   vertical-align middle
   overflow hidden
-  margin: 0 0.5rem 1rem 0
-
+  margin: 0 0.5rem 0.5rem 0
+  &+hr
+    margin-bottom $x_PaddingX
+    background red
 
 
 //------------------------------------------------------------------------------
 // @part Container
 //------------------------------------------------------------------------------
 
+/**
+ * Container
+ * ---------
+ * * Center its contents
+ * * Limit the width of its childs
+ * @TODO: Check what this bootstrap hack does.
+ */
 .container
   margin auto
-  padding x4_PaddingContainer
+  padding $x4_Padding
   &:before, &:after
     content ' '
     display table
@@ -317,77 +498,93 @@ html
 // @part Panel
 //------------------------------------------------------------------------------
 
+/**
+ * Panel
+ * -----
+ */
 .panel
-    border-radius x4_BorderInnerRadius
-    >*:first-child
-      border-top-left-radius x4_BorderRadius
-      border-top-right-radius x4_BorderRadius
-    >*:last-child
-      border-bottom-left-radius x4_BorderRadius
-      border-bottom-right-radius x4_BorderRadius
-    .panel-header
-      margin 0
-      padding x4_PaddingHeader
-      padding-left 2rem
-      background linear-gradient(
-          90deg,
-          x4_ShadeDark 1.25rem,
-          x4_ShadeMedium 1.25rem
-      )
-      &[class*=fontawesome]
-        padding x4_PaddingHeader
-        background linear-gradient(
-            90deg,
-            x4_ShadeDark 4.25rem,
-            x4_ShadeMedium 4.25rem
-        )
-      &[class*=fontawesome]:before
-        display: inline-block
-        width 2.25rem
-        text-align center
-        margin-right 1.25rem
-        line-height auto
-        vertical-align -0.05rem
-    .panel-body
-      clearfix()
-      padding x4_PaddingPanel
-    >hr
-      border 0
-      margin 0
-      height x4_ShadowDistance
-      
+  border-radius $x4_BorderInnerRadius
 
-x4_createPanelTheme(
-    clHeader = x4_TintMedium,
-    bgHeader = x4_ShadeMedium,
-    clSubHeader = x4_TintDarker,
-    clBody = x4_ShadeDark,
-    bgBody = x4_TintLight,
-    clShadow = x4_ShadeDark
-  )
-  .panel
-    .panel-header
-      color clHeader
-      border-color clBody
-      background-color bgHeader
-      small
-        color clSubHeader
-    .panel-body
-      color clBody
-      background-color bgBody
-    &.panel-raised
-      box-shadow x4_ShadowDistance x4_ShadowDistance 0 clShadow
-    >hr
-      border-style solid
-      border-color bgBody
-      border-width 0.5rem 0
-      background-color x4_TintDark
+  // Round edges of panel members
+  >[class^="panel-"]:first-child
+    border-top-left-radius $x4_BorderRadius
+    border-top-right-radius $x4_BorderRadius
+  >[class*="fontawesome-"]:first-child:before
+    border-top-left-radius $x4_BorderRadius
+  >[class^="panel-"]:last-child
+    border-bottom-left-radius $x4_BorderRadius
+    border-bottom-right-radius $x4_BorderRadius
+  >[class*="fontawesome-"]:last-child:before
+    border-bottom-left-radius $x4_BorderRadius
 
-  
+  /**
+   * Panel Header
+   * ------------
+   */
+  .panel-header
+    margin 0
+    padding 3em 0
+    color $x4_TintLight
+    background-color $x4_ShadeLight
+    &:not([class*="fontawesome-"])
+      padding 0 ($x4_PaddingX / 2)
+      border-left $x4_PaddingX solid $x4_ShadeDark
+    &[class*="fontawesome-"]:before
+      width 3rem
+      color $x4_TintMedium
+      background-color $x4_ShadeDark
+    small
+      color $x4_TintDarker
+
+  /**
+   * Panel Body
+   * ----------
+   */
+  .panel-body
+    padding $x4_Padding
+    color $x4_ShadeDark
+    background-color $x4_TintLight
+    clearfix()
+    >hr
+      margin-left -($x4_PaddingX)
+      margin-right -($x4_PaddingX)
+
+  /**
+   * Horizontal ruler
+   * ----------------
+   * This ruler is out of `.panel-body`, so we have to handle it in some
+   * other way.
+   */
+  >hr
+    margin 1rem 0
+    height 0
+    &:before
+      height 0
+      margin 0
+      display block
+      content ' '
+      background #FF0
+      border-bottom 1rem #0F0 solid
+
+  // Sub style of the panel
+  &.panel-raised
+    box-shadow $x4_Shadow
+
 
 //------------------------------------------------------------------------------
-// @part Commons
+// @part Shares between components
 //------------------------------------------------------------------------------
+
+/**
+ * Headlines from h1-h6
+ * --------------------
+ * Removes `margin-top` for the first headline in `.container` and `.panel`
+ * and removes `margin-bottom` for the last headline.
+ */
+h1, h2, h3, h4, h5, h6
+  &~p
+    margin-top 0
+
 for index in (1 .. 6)
   .container h{index}:first-child,
   .panel h{index}:first-child
@@ -396,6 +593,9 @@ for index in (1 .. 6)
   .panel h{index}:last-child
     margin-bottom 0 !important
 
+.container p:first-child,
+.panel p:first-child
+  margin-top 0 !important
 
 //------------------------------------------------------------------------------
 //
@@ -403,76 +603,122 @@ for index in (1 .. 6)
 //
 //------------------------------------------------------------------------------
 
-html
-  
-  //--------------------------------------------------------------------------
-  // @part Theme
-  //--------------------------------------------------------------------------
-  
-  &.theme
-    color x4_ShadeDark
-    -webkit-filter grayscale(100%)
-    x4_ThemeCreateStripes(
-        x4_ThemeStripe45,
-        x4_TintMedium,
-        x4_ShadeLight,
-        68px
-    )
-    .theme-switcher
-      position fixed
-      top 0.75em
-      right x4_PaddingX
-    x4_createPanelTheme(
-        x4_TintMedium,
-        x4_ShadeMedium,
-        x4_TintDarker,
-        x4_ShadeDark,
-        x4_TintLight,
-        x4_ShadeDark
-    )
-  
-  //--------------------------------------------------------------------------
-  // @part Theme HTML
-  //--------------------------------------------------------------------------
-  
-  &.theme-html
-    -webkit-filter grayscale(0%)
-    header .header-title:after
-      content 'HTML'
-    &.version-4 .header-title:after
-      content 'HTML4'
-    &.version-5 .header-title:after
-      content 'HTML5'
-    &.version-x .header-title:after
-      content 'XHTML'
-  
-  
-  //--------------------------------------------------------------------------
-  // @part Theme CSS
-  //--------------------------------------------------------------------------
-  
-  &.theme-css
-    -webkit-filter hue-rotate(190deg) grayscale(0%)
-    header .header-title:after
-      content 'CSS'
-    &.version-2 .header-title:after
-      content 'CSS2'
-    &.version-3 .header-title:after
-      content 'CSS3'
-    &.version-4 .header-title:after
-      content 'CSS4'
-  
-  
-  //--------------------------------------------------------------------------
-  // @part Theme JS
-  //--------------------------------------------------------------------------
-  
-  &.theme-js
-    -webkit-filter hue-rotate(120deg) grayscale(0%)
-    header
-      .header-title:after
-        content 'JavaScript'
-    &.version-1_8_5 .header-title:after
-      content 'JavaScript 1.8.5'
+//------------------------------------------------------------------------------
+// @part Theme
+//------------------------------------------------------------------------------
 
-// EOT
+.theme
+  color $x4_ShadeDark
+  -webkit-filter grayscale(100%)
+  x4_GradientStripes(
+      $x4_GradientDegree45,
+      $x4_TintDark,
+      $x4_ShadeMedium,
+      68px
+  )
+  .theme-switcher
+    position fixed
+    top 0.75rem
+    right $x4_PaddingX
+
+
+//------------------------------------------------------------------------------
+// @part Theme HTML
+//------------------------------------------------------------------------------
+
+.theme-html
+  -webkit-filter grayscale(0%)
+  header .header-title:after
+    content 'HTML'
+  &.version-4 .header-title:after
+    content 'HTML4'
+  &.version-5 .header-title:after
+    content 'HTML5'
+  &.version-x .header-title:after
+    content 'XHTML'
+
+
+//------------------------------------------------------------------------------
+// @part Theme CSS
+//------------------------------------------------------------------------------
+
+.theme-css
+  -webkit-filter hue-rotate(190deg) grayscale(0%)
+  header .header-title:after
+    content 'CSS'
+  &.version-2 .header-title:after
+    content 'CSS2'
+  &.version-3 .header-title:after
+    content 'CSS3'
+  &.version-4 .header-title:after
+    content 'CSS4'
+
+
+//------------------------------------------------------------------------------
+// @part Theme JS
+//------------------------------------------------------------------------------
+
+.theme-js
+  -webkit-filter hue-rotate(120deg) grayscale(0%)
+  header
+    .header-title:after
+      content 'JavaScript'
+  &.version-1_8_5 .header-title:after
+    content 'JavaScript 1.8.5'
+
+
+//------------------------------------------------------------------------------
+//
+// @section Shortcuts and overrides
+//
+//------------------------------------------------------------------------------
+
+/**
+ * No shadow override
+ * ------------------
+ * Removes box shadows
+ */
+html body .set-no-shadow
+html body .set-no-shadow:before,
+html body .set-no-shadow:after
+  box-shadow none !important
+
+/**
+ * set-invisible
+ * ---------
+ * Hides a element using `visibility: hidden;`
+ */
+html body .set-invisible
+  visibility hidden !important
+
+/**
+ * set-debug override
+ * ------------
+ * A little layout helper.
+ */
+html body .set-debug
+  width 100% !important
+  min-height 32px
+  display table !important
+  font-size 0.75rem !important
+  font-weight bolder !important
+  text-align center !important
+  color darken(#F0F, 50%) !important
+  margin 0 !important
+  padding 0 !important
+  x4_GradientCheckerBoard(
+      x4_ColorAlpha(#F0F, 0.75),
+      x4_ColorAlpha(#F0F, 0.25),
+      34px,
+      34px
+  )
+  background-color transparent !important
+  &:after
+    display table-cell !important
+    vertical-align middle !important
+    content '<DEBUG_HELPER>' !important
+
+
+//------------------------------------------------------------------------------
+// EOT, end of transmission.
+//------------------------------------------------------------------------------

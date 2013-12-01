@@ -1,0 +1,205 @@
+doctype 5
+
+
+//------------------------------------------------------------------------------
+// x4.css Theme System
+//------------------------------------------------------------------------------
+// @creator Oliver Kühn
+// @website http://0x04.de
+// @created 2013-11-29
+// @license MIT
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
+//
+// @section Document
+//
+//------------------------------------------------------------------------------
+
+html( lang="en" ).theme.theme-html
+  head
+    title
+      | x4.css Theme System
+    link( rel="stylesheet", href="../src/x4.css" )
+  body
+    header
+      .container
+        h1.header-title.fontawesome-pencil
+    .container
+      .panel.panel-raised
+        //input( type="number", min="0.05", max="1", step="0.01" )
+        //input( type="range", min="0.05", max="1", step="0.01" )
+
+        //----------------------------------------------------------------------
+        // @part Test for colors, tints, shades etc.
+        //----------------------------------------------------------------------
+
+        h1.panel-header.fontawesome-tint
+          | Coloring
+        .panel-body
+          h1.fontawesome-filter
+            | Tints &amp; shades
+            small
+              | base color + 5 tints &amp; 5 shades
+          // Base color
+          .color-swatch.fontawesome-adjust.tint-bg-base.shade-cl-medium
+          .color-swatch.set-no-shadow +
+          // Tints / shades
+          .color-swatch.fontawesome-upload.tint-bg-lighter.shade-cl-darker
+          .color-swatch.fontawesome-upload.tint-bg-light.shade-cl-dark
+          .color-swatch.fontawesome-upload.tint-bg-medium.shade-cl-medium
+          .color-swatch.fontawesome-upload.tint-bg-dark.shade-cl-light
+          .color-swatch.fontawesome-upload.tint-bg-darker.shade-cl-lighter
+          .color-swatch.set-no-shadow /
+          // Shades / tints
+          .color-swatch.fontawesome-download.shade-bg-lighter.tint-cl-darker
+          .color-swatch.fontawesome-download.shade-bg-light.tint-cl-dark
+          .color-swatch.fontawesome-download.shade-bg-medium.tint-cl-medium
+          .color-swatch.fontawesome-download.shade-bg-dark.tint-cl-light
+          .color-swatch.fontawesome-download.shade-bg-darker.tint-cl-lighter
+          hr.dotted
+          h1.fontawesome-magic
+            | CSS filter magic!
+            small
+              | Turn the knobs!
+          //div#input-filters
+            //-dl
+            //-  dt
+            //-  dt
+            //-  | blur
+            //-  dd
+            //-    //progress( value="50", max="100" )
+            //-    input.input-filter(
+            //-        name="blur"
+            //-        type="range",
+            //-        min="0",
+            //-        max="10",
+            //-        value="0",
+            //-        step="0.1"
+            //-    )
+            //-  dt
+            //-  | brightness
+            //-  dd
+            //-    input.input-filter(
+            //-        name="brightness"
+            //-        type="range",
+            //-        min="0.05",
+            //-        max="1",
+            //-        value="1",
+            //-        step="0.01"
+            //-    )
+            //-  | grayscale
+            //-  dd
+            //-    input.input-filter(
+            //-        name="grayscale"
+            //-        type="range",
+            //-        min="0",
+            //-        max="1",
+            //-        value="0",
+            //-        step="0.01"
+            //-    )
+            //-  dt
+            //-  | contrast
+            //-  dd
+            //-    input.input-filter(
+            //-        name="contrast"
+            //-        type="range",
+            //-        min="0",
+            //-        max="1",
+            //-        value="0",
+            //-        step="0.01"
+            //-    )
+
+
+        //----------------------------------------------------------------------
+        // @part Test for body headers (h1-h6)
+        //----------------------------------------------------------------------
+
+        h1.panel-header.fontawesome-font
+          | 2. Text
+        .panel-body
+        h2.panel-header.fontawesome-h-sign
+          | 2.1. Headlines
+        .panel-body
+          - for (var i = 1, l = 6; i <= l; i++)
+            #{'h' + i}
+              | &lt;h#{i}&gt; headline ##{i}
+              small
+                | sub headline
+            p.
+              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+              diam nonumy eirmod tempor invidunt ut labore et dolore magna
+              aliquyam erat, sed diam voluptua.
+
+
+        //----------------------------------------------------------------------
+        // @part Test for panel headers (h1-h6)
+        //----------------------------------------------------------------------
+
+        h2.panel-header.fontawesome-h-sign
+          | 2.2. Panel headers
+        .panel-body
+          p.
+            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+            diam nonumy eirmod tempor invidunt ut labore et dolore magna
+            aliquyam erat, sed diam voluptua.
+        - for (var i = 1, l = 6; i <= l; i++)
+          #{'h' + i}.panel-header
+            | &lt;h#{i}&gt; panel header ##{i}
+            small
+              | sub headline
+          .panel-body
+              p.
+                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+                diam nonumy eirmod tempor invidunt ut labore et dolore magna
+                aliquyam erat, sed diam voluptua.
+
+
+        //----------------------------------------------------------------------
+        // @part Test for paragraphs and horizontal rulers
+        //----------------------------------------------------------------------
+
+        h2.panel-header.fontawesome-resize-horizontal
+          | 2.3. Horizontal rulers
+        .panel-body
+          p.
+            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+            diam nonumy eirmod tempor invidunt ut labore et dolore magna
+            aliquyam erat, sed diam voluptua.
+          hr.fat.dotted
+          p.
+            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+            diam nonumy eirmod tempor invidunt ut labore et dolore magna
+            aliquyam erat, sed diam voluptua.
+          hr.dotted
+          p.
+            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+            diam nonumy eirmod tempor invidunt ut labore et dolore magna
+            aliquyam erat, sed diam voluptua.
+          hr.fat
+          p.
+            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+            diam nonumy eirmod tempor invidunt ut labore et dolore magna
+            aliquyam erat, sed diam voluptua.
+          hr
+          p.
+            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+            diam nonumy eirmod tempor invidunt ut labore et dolore magna
+            aliquyam erat, sed diam voluptua.
+
+        .panel-body.set-debug
+        hr.fat.dotted
+        .panel-body.set-debug
+
+        #bottom
+        script( type="text/javascript", src="../vendor/jquery/jquery.js" )
+        script( type="text/javascript", src="x4-jade.js" )
+        script( type="text/javascript" ).
+          (function($)
+          {
+            // The manager JavaScript component.
+            $('#input-filters').x4_FilterManager({
+                // @TOOD.
+            });
+          })
+          (jQuery);
