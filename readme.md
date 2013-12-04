@@ -1,7 +1,7 @@
-x4.css Theme System
-===================
+x4 Theme System
+================
 
-My little css theme system. Initial build for my
+My little css/js theme system. Initial build for my
 [codepen.io](http://codepen.io/0x04) site and my pens. A really good `stylus`
 test drive :-)
 
@@ -20,19 +20,15 @@ Sub themes:
  * Primary colors: white, gray, tinted gray
  * Version notice: 'version version-just-a-pen …'
 * __HTML (.theme-html):__
- * Primary colors: white, orange, tinted orange 
+ * Primary colors: white, orange, tinted orange
  * Version notice: 'html version-5 version-x …'
 * __CSS (.theme-css):__
- * Primary colors: white, blue, tinted blue 
+ * Primary colors: white, blue, tinted blue
  * Version notice: 'css version-2 version-3 …'
 * __JS (.theme-js):__
  * Primary colors: white, green, tinted green
  * Version notice: JS String 'v1.8.5',
                    CSS Selector '.version-1_8_5'
-
-Demo:
------
-http://codepen.io/0x04/full/GruoD
 
 Todos:
 ------
