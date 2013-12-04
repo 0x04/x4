@@ -18,7 +18,7 @@
 @import 'nib'
 @import 'nib/gradients'
 // @TODO: For release only the required fonts, please.
-@import url(http://fonts.googleapis.com/css?family=Ubuntu\|Monda);
+@import url(http://fonts.googleapis.com/css?family=Ubuntu);
 @import url(http://weloveiconfonts.com/api/?family=fontawesome)
 
 
@@ -36,7 +36,6 @@
  * Theme font
  * @type {font-style}
  */
-$x4_FontMonda = 1rem\/150% 'Monda', sans-serif
 $x4_FontUbuntu = 1rem\/150% 'OpenSans', sans-serif
 
 /**
@@ -303,6 +302,9 @@ x4_ColorCreate(
 // @part Defaults
 //------------------------------------------------------------------------------
 
+*
+ box-sizing border-box
+
 body
   font $x4_FontUbuntu
   margin $x4_MarginBody
@@ -310,6 +312,19 @@ body
 
 label, a
   cursor pointer
+
+input[type="range"]
+  -webkit-appearance none
+  background-color fuchsia
+  &::-webkit-slider-thumb
+    -webkit-appearance none
+    padding 10px
+    width 16px
+    height 16px
+    border-radius 8px
+    background-color red
+    border 1px solid green
+
 
 
 //------------------------------------------------------------------------------
@@ -333,9 +348,8 @@ label, a
  * Headlines.
  */
 h1, h2, h3, h4, h5, h6
-  font $x4_FontMonda
   font-weight bolder
-  & ~ p
+  &~p
     margin-top 0
 
   /**
@@ -346,30 +360,30 @@ h1, h2, h3, h4, h5, h6
    *
    * The solution is to build a pseudo table with corresponding display
    * values. A bit tricky, but does the job.
-   */
   &[class*="fontawesome-"]
     width 100%
     // The trick
-    display table
-    border-collapse collapse
-    border-spacing 1rem
-  &[class*="fontawesome-"]:before
-    width 1rem
-    text-align center
-    display table-cell
-    // Creates the gap between the icon and the text of the headline.
-    border-right 1rem solid transparent
-    // But now we have to move the text back into place.
-    text-indent 0.5rem
+   */
+  &[class*="fontawesome-"]
+    &:before
+      display inline-block
+      width 3.5rem
+      text-align center
+      vertical-align -0.05rem
+      // Creates the gap between the icon and the text of the headline.
+      margin-right ($x4_PaddingX / 2)
+
 p
   margin $x4_PaddingY 0 ($x4_PaddingY * 1.5) 0
 
 for i in (1 .. 6)
   h{i}
     font-size (1.75 * (6 - i) / 5 + 0.5)rem
+    line-height 1.5em
     margin $x4_MarginHeadline
     small
       font-weight normal
+      font-style italic
       color $x4_ShadeLight
       // Create a space to seperate it from the normal headline text.
       &:before
@@ -523,18 +537,19 @@ hr
    */
   .panel-header
     margin 0
-    padding 3em 0
+    line-height 1.75em
     color $x4_TintLight
     background-color $x4_ShadeLight
     &:not([class*="fontawesome-"])
       padding 0 ($x4_PaddingX / 2)
       border-left $x4_PaddingX solid $x4_ShadeDark
-    &[class*="fontawesome-"]:before
-      width 3rem
+    &[class*="fontawesome-"]
       color $x4_TintMedium
-      background-color $x4_ShadeDark
+      border-left 3.5rem solid $x4_ShadeDark
+      &:before
+        margin-left -3.5rem
     small
-      color $x4_TintDarker
+      color $x4_TintDark
 
   /**
    * Panel Body
@@ -570,32 +585,6 @@ hr
   &.panel-raised
     box-shadow $x4_Shadow
 
-
-//------------------------------------------------------------------------------
-// @part Shares between components
-//------------------------------------------------------------------------------
-
-/**
- * Headlines from h1-h6
- * --------------------
- * Removes `margin-top` for the first headline in `.container` and `.panel`
- * and removes `margin-bottom` for the last headline.
- */
-h1, h2, h3, h4, h5, h6
-  &~p
-    margin-top 0
-
-for index in (1 .. 6)
-  .container h{index}:first-child,
-  .panel h{index}:first-child
-    margin-top 0 !important
-  .container h{index}:last-child,
-  .panel h{index}:last-child
-    margin-bottom 0 !important
-
-.container p:first-child,
-.panel p:first-child
-  margin-top 0 !important
 
 //------------------------------------------------------------------------------
 //
