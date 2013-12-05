@@ -450,7 +450,7 @@ hr
 .h-space-x1,
 .h-space-x2,
 .h-space-x3
-  padding x4_PaddingY 0 0 0
+  padding $x4_PaddingY 0 0 0
 
 
 //------------------------------------------------------------------------------
@@ -483,7 +483,7 @@ hr
   overflow hidden
   margin: 0 0.5rem 0.5rem 0
   &+hr
-    margin-bottom $x_PaddingX
+    margin-bottom $x4_PaddingX
     background red
 
 
@@ -617,7 +617,7 @@ hr
 
 .theme-html
   -webkit-filter grayscale(0%)
-  header .header-title:after
+  .header-title:after
     content 'HTML'
   &.version-4 .header-title:after
     content 'HTML4'
@@ -633,7 +633,7 @@ hr
 
 .theme-css
   -webkit-filter hue-rotate(190deg) grayscale(0%)
-  header .header-title:after
+  .header-title:after
     content 'CSS'
   &.version-2 .header-title:after
     content 'CSS2'
@@ -649,9 +649,8 @@ hr
 
 .theme-js
   -webkit-filter hue-rotate(120deg) grayscale(0%)
-  header
-    .header-title:after
-      content 'JavaScript'
+  .header-title:after
+    content 'JavaScript'
   &.version-1_8_5 .header-title:after
     content 'JavaScript 1.8.5'
 
@@ -685,7 +684,7 @@ html body .set-invisible
  * ------------
  * A little layout helper.
  */
-html body .set-debug
+debug()
   width 100% !important
   min-height 32px
   display table !important
@@ -707,6 +706,8 @@ html body .set-debug
     vertical-align middle !important
     content '<DEBUG_HELPER>' !important
 
+html body .set-debug
+  debug()
 
 //------------------------------------------------------------------------------
 // EOT, end of transmission.
